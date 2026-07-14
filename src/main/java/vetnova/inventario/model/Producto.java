@@ -1,6 +1,7 @@
 package vetnova.inventario.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +23,11 @@ public class Producto {
     private Long id;
 
     @Column(nullable = false, length = 150)
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
     @Column(length = 500)
+    @NotBlank(message = "La descripción es obligatoria")
     private String descripcion;
 
     @Enumerated(EnumType.STRING)
@@ -39,9 +42,11 @@ public class Producto {
     private BigDecimal precio;
 
     @Column(unique = true, length = 50)
+    @NotBlank(message = "El código SKU es obligatorio")
     private String codigoSku;
 
     @Column(length = 20)
+    @NotBlank(message = "La unidad de medida es obligatoria")
     private String unidadMedida;
 
     private Integer stockMinimo;

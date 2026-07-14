@@ -1,6 +1,7 @@
 package vetnova.inventario.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,9 +32,11 @@ public class MovimientoInventario {
     private TipoMovimiento tipoMovimiento;
 
     @Column(nullable = false)
+    @NotNull(message = "La cantidad es obligatoria")
     private Integer cantidad;
 
     @Column(length = 255)
+    @NotBlank(message = "Se debe especificar el motivo del movimiento")
     private String motivo;
 
     /** Referencia externa al usuario (microservicio de Autenticacion) que ejecuto el movimiento. */
